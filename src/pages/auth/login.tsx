@@ -1,10 +1,11 @@
 import LoginLayout from "@/components/auth/login/layout"
 
 
-export const Login = () => {
+ const Login = () => {
   return (
     <div>
         <LoginLayout/>
     </div>
   )
 }
+export default Login

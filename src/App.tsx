@@ -1,8 +1,18 @@
-import { Routes, Route,} from 'react-router-dom'
-import Auth from './components/auth/auth'
-import { Login } from './pages/auth/login'
-import Register from './pages/auth/register'
+import { Routes, Route,} from 'react-router-dom';
+import Auth from './components/auth/auth';
+import  Login  from './pages/auth/login';
+import Register from './pages/auth/register';
+import { useEffect } from 'react';
+import { AppDispatch } from './stores/store';
+import { useDispatch } from 'react-redux';
+import { fetchUser } from './stores/slices/userSlice';
+
+
 const App = () => {
+  const dispatch :AppDispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(fetchUser())
+  },[])
 
   return (
     <>  

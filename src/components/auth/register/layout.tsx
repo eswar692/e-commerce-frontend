@@ -39,10 +39,10 @@ const RegisterLayout= () => {
              return toastMessage('failed', 'Name is required');
         }
         if (!formData.email.trim() || !validateEmail(formData.email)) {
-            return toast.error('Please enter a valid email address.');
+            return toastMessage("failed",'Please enter a valid email address.');
         }
         if (!formData.password.trim() || !validatePassword(formData.password)) {
-            return toast.error('Password must be at least 8 characters long and include a special character.');
+            return toastMessage('failed','Password must be at least 8 characters long and include a special character.');
         }
 
         
@@ -59,7 +59,9 @@ const RegisterLayout= () => {
 
         } catch (error) {
             console.log(error)
-            toastMessage('failed', "internet error")
+            const message = (error as any)?.response.data.message || (error as any)?.message || "Internet error";
+
+            toastMessage('failed', message)
             
         }
     };

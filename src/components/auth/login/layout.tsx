@@ -38,7 +38,8 @@ const LoginLayout = () => {
       }
     } catch (error) {
       console.error(error)
-      toastMessage('failed', 'internet error try again')
+      const message = (error as any)?.response?.data?.message || (error as any)?.message || "Internet error";
+      toastMessage('failed', message)
     }
 };
   
