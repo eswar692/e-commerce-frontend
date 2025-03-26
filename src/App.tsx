@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import Loading from './utils/Loading';
 import Shop from './components/shop/shop';
 import Home from './pages/shop/Home';
+import Otp from './pages/otp/Otp';
 
 
 
@@ -51,9 +52,10 @@ const App = () => {
           <Auth/>
         </AuthRoutes>
       }>
-        <Route path='login' element={<Login/>} />
+      <Route path='login' element={<Login/>} />
         <Route path='register' element={<Register/>}/>
       </Route>
+      <Route path='/mail-verification' element={<Otp/>}/>
 
       <Route path='/shop' element={<PrivateRoutes> <Shop/> </PrivateRoutes>}>
         <Route path='home' element={<Home/>}/> 

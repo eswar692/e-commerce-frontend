@@ -37,7 +37,7 @@ const Header: React.FC = () => {
                     <NavigationMenuContent>
                         <NavigationMenuLink> </NavigationMenuLink>
                             <div>
-                                <img src="https://www.google.com/imgres?q=shopping%20images&imgurl=https%3A%2F%2Fimg.freepik.com%2Ffree-vector%2Fseasonal-sale-discounts-presents-purchase-visiting-boutiques-luxury-shopping-price-reduction-promotional-coupons-special-holiday-offers-vector-isolated-concept-metaphor-illustration_335657-2766.jpg%3Fw%3D360&imgrefurl=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fshopping&docid=KgWPi0h5o0JPtM&tbnid=NySNFu4aEb9ElM&vet=12ahUKEwiOzpyWnKWMAxXg4jgGHU-RFaMQM3oECBUQAA..i&w=360&h=360&hcb=2&ved=2ahUKEwiOzpyWnKWMAxXg4jgGHU-RFaMQM3oECBUQAA" alt="" />
+                                
                                 <h1>dfgfd</h1>
                             </div>
                        
