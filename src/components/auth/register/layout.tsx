@@ -3,7 +3,8 @@ import { toast } from 'sonner';
 import { Eye, EyeOff } from 'lucide-react';
 import {toastMessage} from '@/utils/toast';
 import axios from 'axios';
-import { userRegister } from '@/utils/apiRoutes';
+import { userOtpSend, userRegister } from '@/utils/apiRoutes';
+import { useNavigate } from 'react-router-dom';
 // import apiClient from '@/utils/api';
 
 
@@ -15,6 +16,7 @@ interface FormData {
 }
 
 const RegisterLayout= () => {
+    const Navigate = useNavigate();
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [formData, setFormData] = useState<FormData>({ name: '', email: '', password: '' });
 
@@ -49,14 +51,12 @@ const RegisterLayout= () => {
         // API call logic ekkada ravali 
 
         try {
+            const response = await axios.post(userOtpSend, { email: formData.email }, { withCredentials: true });
+            if (response.data.success) {
+                toastMessage('success', 'OTP sent successfully')
+                Navigate('/auth/email-verify', { state: { name: formData.name, email: formData.email, password: formData.password } });
+            }
             
-             const response = await axios.post(userRegister,{name:formData.name, email:formData.email, password:formData.password}, {withCredentials:true})
-             console.log(response.data)
-             if(response.status === 201){
-             toastMessage('success', "Login successfully")
-                setFormData({ name: '', email: '', password: '' })
-             }
-
         } catch (error) {
             console.log(error)
             const message = (error as any)?.response.data.message || (error as any)?.message || "Internet error";

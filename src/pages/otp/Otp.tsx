@@ -6,9 +6,14 @@ import {
     InputOTPSlot,
   } from "@/components/ui/input-otp"
 import { toastMessage } from '@/utils/toast';
+import axios from 'axios';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { userLogin, userOtpVerify, userRegister } from '@/utils/apiRoutes';
   
 
 const Otp: React.FC = () => {
+    const navigate = useNavigate()
+    const lacation = useLocation();
     const [otp, setOtp] = useState<string>('');
 
     const handleOtpChange = (value: string) => {
@@ -19,14 +24,37 @@ const Otp: React.FC = () => {
         setOtp(value);
       };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async(e: React.FormEvent) => {
         e.preventDefault();
         if (otp.length !== 6) {
           toastMessage('failed', 'Please enter 6 digit OTP');
           return;
         }
         //API logic to verify OTP
-        console.log(otp)
+        try {
+            const { name, email, password } = lacation.state;
+            const { data } = await axios.post(userOtpVerify, { email, otp }, { withCredentials: true });
+            if (data.success) {
+                console.log(data);
+                toastMessage('success', 'OTP verified successfully')
+
+                const response = await axios.post(userRegister, {name, email, password }, { withCredentials: true });
+                if(response.data.success){
+                    toastMessage('success', 'Login success')
+                   
+                    if (response.data.success) {
+                        toastMessage('success', 'Registration success')
+                        navigate('/shop/home')
+                    }
+                }
+            } else {
+                toastMessage('failed', 'Invalid OTP')
+            }
+
+            
+        } catch (error) {
+            toastMessage('failed', (error as any).response.data.message || (error as any).message || 'Something went wrong')
+        }
 
         
             

@@ -4,6 +4,8 @@ import { Eye, EyeOff } from 'lucide-react';
 import axios from 'axios';
 import { userLogin } from '@/utils/apiRoutes';
 import { toastMessage } from '@/utils/toast';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 interface FormData {
   email: string;
@@ -11,6 +13,7 @@ interface FormData {
 }
 
 const LoginLayout = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [formData, setFormData] = useState<FormData>({  email: '', password: '' });
 
@@ -50,7 +53,7 @@ const LoginLayout = () => {
             <div className='py-5 bg-blue-400'><h3 className='text-center font-bold text-2xl text-white stroke-text'>Pro Daddy Agency</h3></div>
             <div>
               <h3 className='text-center pt-5 '>For new User Create Account</h3>
-              <h3 className='text-center text-sm font-[Poppins] mt-[-2px]'>Have Account <span className='text-blue-800 '><a href='/auth/login'>Login</a></span></h3>
+              <h3 className='text-center text-sm font-[Poppins] mt-[-2px]'>Have Account <span className='text-blue-800 '><Link to={'/auth/register'}>Register</Link></span></h3>
             </div>
           </div>
 

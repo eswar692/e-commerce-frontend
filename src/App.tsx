@@ -54,8 +54,9 @@ const App = () => {
       }>
       <Route path='login' element={<Login/>} />
         <Route path='register' element={<Register/>}/>
+        <Route path='email-verify' element={<Otp/>}/>
       </Route>
-      <Route path='/mail-verification' element={<Otp/>}/>
+      
 
       <Route path='/shop' element={<PrivateRoutes> <Shop/> </PrivateRoutes>}>
         <Route path='home' element={<Home/>}/> 
